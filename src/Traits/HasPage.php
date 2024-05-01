@@ -52,7 +52,7 @@ trait HasPage
      * @param string $seo_description
      * @return Builder|Model
      */
-    public function add(
+    public static function add(
         string $name,
         string $slug,
         string $template,

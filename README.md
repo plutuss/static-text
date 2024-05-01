@@ -49,6 +49,25 @@ class PageController extends Controller
                     'type' => 'text',
                 ]);
     }
+    
+    public function addPageItemWithLocale()
+    {
+           $pageItem = PageItem::add(
+                name: 'header',
+                page_id: $page->id,
+                data: [
+                    [
+                        'key' => 'h3_en', // You can specify a key with the available localisations in the application
+                        'value' => 'Installed packages Laravel',
+                        'type' => 'text',
+                    ],
+                    [
+                        'key' => 'h3_de',  // You can specify a key with the available localisations in the application
+                        'value' => 'Installierte Pakete Laravel',
+                        'type' => 'text',
+                    ]
+                ]);
+    }
 
 }
 
@@ -61,5 +80,8 @@ class PageController extends Controller
     // You can specify a default value
     // if the required value is not found in the database.
    {{ $page->show('header:description_text','default value') }}
+   
+    // Call to a view without specifying a locale
+    <h3> {{ $page->show('header:h3') }} </h3>
 
 ```

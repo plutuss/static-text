@@ -44,7 +44,7 @@ trait HasPageItem
      * @param array $data
      * @return Builder|Model
      */
-    public function add(
+    public static function add(
         string $name,
         int    $page_id,
         array  $data
