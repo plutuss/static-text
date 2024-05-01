@@ -2,45 +2,64 @@
 
 ## Laravel:
 
-- [GitHub](https://github.com/plutuss/getid3).
+- [GitHub](https://github.com/plutuss/static-text).
 
 ```shell
  composer require plutuss/static-text-laravel
 ```
 
-#### config/filesystems.php
-```php
-   'page-files' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/page-files'),
-            'url' => env('APP_URL').'/storage/page-files',
-            'visibility' => 'public',
-        ],
-```
-
-
 ```php
 <?php
 
 use Plutuss\Models\Page;
+use Plutuss\Http\Requests\StorePageRequest;
+use Plutuss\Http\Requests\StorePageItemRequest;
 
 class PageController extends Controller
 {
     public function index()
     {
-    
          $page = Page::findByName('name_page');
          
          return view('welcome', compact('page'))
-  
+    }
+    
+    public function addPage(StorePageRequest $request)
+    {
+          $page = Page::add(
+                name: 'home',
+                slug: '/',
+                template: 'main',
+                seo_title: 'seo_title', // this field can be empty
+                seo_description: 'seo_description' // this field can be empty
+          ); 
+    }
+    
+        
+    public function addPageItem(StorePageItemRequest $request)
+    {
+          $page = Page::findByName('home');
+    
+          $pageItem = PageItem::add(
+                name: 'header',
+                page_id: $page->id,
+                data: [
+                    'key' => 'h1',
+                    'value' => 'Installed packages Laravel',
+                    'type' => 'text',
+                ]);
     }
 
 }
 
 ```
-####  resources/views/welcome.blade.php
+###  resources/views/*.blade.php
 ```php
 
-{{ $page->show('header:main_image') }}
+    <h1> {{ $page->show('header:h1') }} </h1>
+    
+    // You can specify a default value
+    // if the required value is not found in the database.
+   {{ $page->show('header:description_text','default value') }}
 
 ```

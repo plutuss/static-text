@@ -29,7 +29,7 @@ trait HasPageItem
 
         $dataNameLocale = $name . '_' . app()->getLocale();
 
-        $data = $this->data->whereIn('title', [$name, $dataNameLocale])->first();
+        $data = $this->data->whereIn('key', [$name, $dataNameLocale])->first();
 
         if (!isset($data['value']) || empty($data)) {
             return $default;
