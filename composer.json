@@ -1,0 +1,34 @@
+{
+    "name": "plutuss/static-text-laravel",
+    "description": "description",
+    "keywords": [
+        "laravel",
+        "static",
+        "text",
+        "static-text"
+    ],
+    "minimum-stability": "stable",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "plutuss",
+            "email": "dima92konovalenko@gmail.com",
+            "homepage": "https://github.com/plutuss"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Plutuss\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Plutuss\\Providers\\StaticTextServiceProvider"
+            ]
+        }
+    }
+}
