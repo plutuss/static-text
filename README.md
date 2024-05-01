@@ -8,6 +8,16 @@
  composer require plutuss/static-text-laravel
 ```
 
+```shell
+php artisan vendor:publish --provider="Plutuss\Providers\StaticTextServiceProvider"
+```
+
+```shell
+php artisan migrate
+```
+
+
+
 ```php
 <?php
 

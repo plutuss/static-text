@@ -21,12 +21,8 @@ class StaticTextServiceProvider extends ServiceProvider
             __DIR__ . '/../database/migrations' => database_path('migrations'),
         ]);
 
-//        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'courier');
-
-
         $this->publishes([
             __DIR__ . '/../config/static-text.php' => config_path('static-text.php'),
-//        __DIR__.'/../resources/views' => resource_path('views/vendor/courier'),
         ]);
     }
 }
