@@ -50,9 +50,11 @@ trait HasPageItem
         array  $data
     ): Model|Builder
     {
-        return self::query()->create(
+        return self::query()->updateOrCreate(
             [
                 'name' => $name,
+            ],
+            [
                 'page_id' => $page_id,
                 'data' => $data
             ]

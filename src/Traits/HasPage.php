@@ -60,11 +60,13 @@ trait HasPage
         string $seo_description = ''
     ): Model|Builder
     {
-        return self::query()->create(
+        return self::query()->updateOrCreate(
             [
-                'name' => $name,
                 'slug' => $slug,
                 'template' => $template,
+            ],
+            [
+                'name' => $name,
                 'seo_title' => $seo_title,
                 'seo_description' => $seo_description
             ]

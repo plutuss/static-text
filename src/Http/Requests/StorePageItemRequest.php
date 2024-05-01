@@ -12,7 +12,7 @@ class StorePageItemRequest extends FormRequest
         $types = config('static-text.types');
 
         return [
-            'name' => ['required', 'string', 'min:3', 'max:100'],
+            'name' => ['required', 'string', 'min:3', 'max:100', 'unique:page_items,name'],
             'page_id' => ['required', 'integer', 'exists:pages,id'],
             'data' => ['required', 'array', 'min:1'],
             // data

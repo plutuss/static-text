@@ -16,7 +16,7 @@ return new class extends Migration {
                 $table->foreignIdFor(\Plutuss\Models\Page::class)
                     ->constrained()
                     ->cascadeOnDelete();
-                $table->string('name', 100);
+                $table->string('name', 100)->unique();
                 $table->json('data');
                 $table->timestamps();
             });
