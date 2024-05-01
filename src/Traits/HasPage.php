@@ -30,6 +30,30 @@ trait HasPage
     }
 
     /**
+     * @param string|null $slug
+     * @return mixed
+     */
+    public static function findBySlug(string $slug = null): mixed
+    {
+        $requestUrl = request()->route()->uri;
+
+        return self::whereIn('slug', [$slug ?: $requestUrl, '/' . $requestUrl])
+            ->with('items')
+            ->first();
+    }
+
+    /**
+     * @param string|null $name
+     * @return mixed
+     */
+    public static function findByRouteName(string $name = null): mixed
+    {
+        return self::whereName($name ?: request()->route()->getName())
+            ->with('items')
+            ->first();
+    }
+
+    /**
      * @param string $key
      * @param mixed $default
      * @return mixed|string
