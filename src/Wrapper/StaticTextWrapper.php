@@ -2,11 +2,35 @@
 
 namespace Plutuss\Wrapper;
 
-class StaticTextWrapper
+class StaticTextWrapper implements StaticTextWrapperInterface
 {
     private ?string $name;
     private ?int $page_id;
     private array $data;
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPageId(): ?int
+    {
+        return $this->page_id;
+    }
+
+    /**
+     * @return array
+     */
+    public function getData(): array
+    {
+        return $this->data;
+    }
 
     /**
      * @param string $name

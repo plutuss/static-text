@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Plutuss\Models\Page;
+use Plutuss\Wrapper\StaticTextWrapperInterface;
 
 trait HasPageItem
 {
@@ -57,6 +58,23 @@ trait HasPageItem
             [
                 'page_id' => $page_id,
                 'data' => $data
+            ]
+        );
+    }
+
+    /**
+     * @param StaticTextWrapperInterface $staticTextWrapper
+     * @return Model|Builder
+     */
+    public static function addWithWrapper(StaticTextWrapperInterface $staticTextWrapper): Model|Builder
+    {
+        return self::query()->updateOrCreate(
+            [
+                'name' => $staticTextWrapper->getName(),
+                'page_id' => $staticTextWrapper->getPageId(),
+            ],
+            [
+                'data' => $staticTextWrapper->getData()
             ]
         );
     }
