@@ -1,7 +1,6 @@
 ## Installed packages
 
 ## Laravel:
-
 - [GitHub](https://github.com/plutuss/static-text).
 
 ```shell

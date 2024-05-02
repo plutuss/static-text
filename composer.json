@@ -1,6 +1,6 @@
 {
     "name": "plutuss/static-text-laravel",
-    "description": "description",
+    "description": "This package makes it possible in Laravel to modify static text on a page from the admin panel. ",
     "keywords": [
         "laravel",
         "static",
