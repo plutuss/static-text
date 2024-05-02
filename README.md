@@ -95,3 +95,58 @@ class PageController extends Controller
     <h3> {{ $page->show('header:h3') }} </h3>
 
 ```
+
+
+### You can use the wrapping class
+```php
+
+    $page = Page::query()->first();
+
+    $wrapper = new  StaticTextWrapper();
+
+    $wrapper->setName('header');
+    $wrapper->setPageId($page->id);
+    $wrapper->setData('h1_title', 'packages', 'text');
+    $wrapper->setData('description', 'Installed packages laravel', 'text');
+    $wrapper->setData('package_url', 'https://github.com/plutuss/static-text', 'url');
+
+    $pageItem = PageItem::addWithWrapper($wrapper);
+    
+    // Or  *************************************
+    
+    $page = Page::query()->first();
+
+    $wrapper = (new  StaticTextWrapper())->setName('header')
+        ->setPageId($page->id)
+        ->setData('h1_title', 'packages', 'text')
+        ->setData('description', 'Installed packages laravel', 'text')
+        ->setData('package_url', 'https://github.com/plutuss/static-text', 'url');
+
+    $pageItem = PageItem::addWithWrapper($wrapper);
+
+```
+
+### You can also get a ready array of data to save 
+ - use a method  **get()**
+```php
+    $page = Page::query()->first();
+
+    $wrapper = (new  StaticTextWrapper())->setName('header')
+        ->setPageId($page->id)
+        ->setData('h1_title', 'packages', 'text')
+        ->setData('description', 'Installed packages laravel', 'text')
+        ->setData('package_url', 'https://github.com/plutuss/static-text', 'url')
+        ->get();
+        
+    $pageItem = PageItem::create($wrapper);
+
+```
+- then call in the **blade**
+```php
+
+   {{ $page->show('header:h1_title') }}
+
+   {{ $page->show('header:description') }}
+   
+   {{ $page->show('header:package_url') }}
+```
