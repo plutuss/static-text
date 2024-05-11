@@ -50,13 +50,15 @@ class PageController extends Controller
           $page = Page::findByName('home');
     
           $pageItem = PageItem::add(
-                name: 'header',
-                page_id: $page->id,
-                data: [
+            name: 'header2',
+            page_id: $page->id,
+            data: [
+                [
                     'key' => 'h1',
                     'value' => 'Installed packages Laravel',
                     'type' => 'text',
-                ]);
+                ]
+            ]);
     }
     
     public function addPageItemWithLocale()
