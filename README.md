@@ -3,6 +3,16 @@
 ## Laravel:
 - [GitHub](https://github.com/plutuss/static-text).
 
+The "Static Text Laravel" package provides a simple and effective solution for managing static text and images on your website directly from the Laravel admin panel. With its capabilities, you can update your site's content without the need for developer intervention, making content management more flexible and convenient.
+
+Key Features:
+
+1. **Static Text Management**: Allows site administrators to easily update textual content such as headers, paragraphs, lists, and other elements without altering code or reloading the page.
+2. **Image Editing**: Enables uploading new images and updating existing ones directly from the administrative panel. This is convenient for updating banners, logos, and other visual elements of the site.
+3. **Multilingual Support**: Provides the ability to manage content in multiple languages, particularly useful for multilingual sites.
+4. **Access Control**: Offers flexible access settings for administrators and content editors, restricting access to functionality based on user roles.
+5. **Laravel Integration**: Fully compatible with the Laravel framework and utilizes best development practices such as migrations, seeders, and service providers.
+
 ```shell
  composer require plutuss/static-text-laravel
 ```
