@@ -3,7 +3,7 @@
 ## Laravel:
 - [GitHub](https://github.com/plutuss/static-text).
 
-The "Static Text Laravel" package provides a simple and effective solution for managing static text and images on your website directly from the Laravel admin panel. With its capabilities, you can update your site's content without the need for developer intervention, making content management more flexible and convenient.
+The "**Static Text Laravel**" package provides a simple and effective solution for managing static text and images on your website directly from the Laravel admin panel. With its capabilities, you can update your site's content without the need for developer intervention, making content management more flexible and convenient.
 
 Key Features:
 
@@ -60,13 +60,18 @@ class PageController extends Controller
           $page = Page::findByName('home');
     
           $pageItem = PageItem::add(
-            name: 'header2',
+            name: 'header',
             page_id: $page->id,
             data: [
                 [
                     'key' => 'h1',
                     'value' => 'Installed packages Laravel',
                     'type' => 'text',
+                ],
+                [
+                    'key' => 'image-bg',
+                    'value' => 'path/image.jpg', // path image or file
+                    'type' => 'image',  // or file
                 ]
             ]);
     }
