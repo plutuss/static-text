@@ -52,14 +52,22 @@ class StaticTextWrapper implements StaticTextWrapperInterface
         return $this;
     }
 
+
     /**
      * @param string $key
      * @param string $value
      * @param string $type
      * @return $this
+     * @throws \Exception
      */
     public function setData(string $key, string $value, string $type): static
     {
+        $types = config('static-text.types');
+
+        if (!in_array($type, $types)) {
+            throw new \Exception('This type does not exist. You can add your type in the configuration file static-text.php');
+        }
+
         $data = [
             [
                 "id" => 1,
@@ -67,8 +75,8 @@ class StaticTextWrapper implements StaticTextWrapperInterface
                 "value" => $value,
                 "type" => $type,
             ],
-
         ];
+
         if (!empty($this->data)) {
             $last = end($this->data);
             $id = $last['id'];

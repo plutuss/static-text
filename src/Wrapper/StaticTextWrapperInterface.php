@@ -22,6 +22,7 @@ interface StaticTextWrapperInterface
      * @param string $value
      * @param string $type
      * @return $this
+     * @throws \Exception
      */
     public function setData(string $key, string $value, string $type): static;
 
