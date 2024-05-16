@@ -16,9 +16,9 @@ class StorePageItemRequest extends FormRequest
             'page_id' => ['required', 'integer', 'exists:pages,id'],
             'data' => ['required', 'array', 'min:1'],
             // data
-            'data.title' => ['required', 'string', 'min:2', 'max:100'],
-            'data.value' => ['required', 'string', 'min:2', 'max:100'],
-            'data.type' => ['required', 'string', 'min:2', 'max:50', 'in:' . implode(',', $types)],
+            'data.*.key' => ['required', 'string', 'min:2', 'max:100'],
+            'data.*.value' => ['required', 'string', 'min:2', 'max:100'],
+            'data.*.type' => ['required', 'string', 'min:2', 'max:50', 'in:' . implode(',', $types)],
 
         ];
     }
