@@ -2,24 +2,21 @@
 
 namespace Plutuss\Http\Requests;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StorePageItemRequest extends FormRequest
 {
-    public function rules(): array
+    public function rules(Model|null $item = null): array
     {
 
-        $types = config('static-text.types');
-
         return [
-            'name' => ['required', 'string', 'min:3', 'max:100', 'unique:page_items,name'],
+            'name' => ['required', 'string', 'min:3', 'max:100', 'unique:page_items,name,' . $item->id ?: $this->id],
             'page_id' => ['required', 'integer', 'exists:pages,id'],
             'data' => ['required', 'array', 'min:1'],
             // data
             'data.*.key' => ['required', 'string', 'min:2', 'max:100'],
             'data.*.value' => ['required', 'string', 'min:2', 'max:100'],
-            'data.*.type' => ['required', 'string', 'min:2', 'max:50', 'in:' . implode(',', $types)],
-
         ];
     }
 
