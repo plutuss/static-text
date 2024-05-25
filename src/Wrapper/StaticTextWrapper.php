@@ -89,10 +89,12 @@ class StaticTextWrapper implements StaticTextWrapperInterface
         return $this;
     }
 
+
     /**
-     * @return array{name: string, page_id: int, data: array}
+     * @param bool $withPageId
+     * @return array{name: string, page_id: int, data: array}|array{name: string, data: array}
      */
-    public function get(): array
+    public function get(bool $withPageId = true): array
     {
         $data = $this->data;
         $name = $this->name;
@@ -102,11 +104,17 @@ class StaticTextWrapper implements StaticTextWrapperInterface
         unset($this->name);
         unset($this->page_id);
 
-        return [
+        $data = [
             'name' => $name,
-            'page_id' => $page_id,
             'data' => $data
         ];
+
+        if ($withPageId) {
+            $data['page_id'] = $page_id;
+            return $data;
+        }
+
+        return $data;
 
     }
 
