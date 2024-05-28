@@ -12,6 +12,6 @@ interface StaticTextPageWrapperInterface
      * @return mixed
      */
     public function setAttribute(string $name,
-                            string $slug,
-                            string $template): mixed;
+                                 string $slug,
+                                 string $template): mixed;
 }
