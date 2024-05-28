@@ -5,7 +5,7 @@ namespace Plutuss\Wrapper;
 class StaticTextWrapper implements StaticTextWrapperInterface
 {
     private ?string $name;
-    private ?int $page_id;
+    private ?int $page_id = null;
     private array $data;
 
     /**

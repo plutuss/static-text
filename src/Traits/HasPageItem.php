@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 use Plutuss\Models\Page;
 use Plutuss\Wrapper\StaticTextWrapperInterface;
 
@@ -34,6 +35,10 @@ trait HasPageItem
 
         if (!isset($data['value']) || empty($data)) {
             return $default;
+        }
+
+        if (in_array($data['type'], ["file", "image"])) {
+            return Storage::disk('pages')->url($data['value']);
         }
 
         return $data['value'];

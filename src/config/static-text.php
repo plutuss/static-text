@@ -2,6 +2,6 @@
 
 return [
 
-    'types' => ["color", "date", "file", "image", "number", "text", "time", "url"],
+    'types' => ["color", "date", "file", "image", "number", "text", "time", "url", "textarea", "tel"],
 
 ];
