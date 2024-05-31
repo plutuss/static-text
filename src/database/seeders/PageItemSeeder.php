@@ -3,47 +3,20 @@
 namespace Plutuss\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Plutuss\Models\Page;
-use Plutuss\Models\PageItem;
+use Plutuss\Database\Seeders\Contracts\PageItemSeederInterface;
+use Plutuss\Database\Seeders\Traits\MakePageItemSeeder;
 use Plutuss\Wrapper\StaticTextPageWrapper;
 use Plutuss\Wrapper\StaticTextWrapper;
 
-class PageItemSeeder extends Seeder
+class PageItemSeeder extends Seeder implements PageItemSeederInterface
 {
 
+    use MakePageItemSeeder;
+
     /**
-     * @return void
+     * @throws \Exception
      */
-    public function run(): void
-    {
-        foreach ($this->getSchema() as $pageSchema) {
-
-            $attributes = $pageSchema['attributes'];
-            $attributes['seo_title'] = $attributes['name'] . ' | ' . env('APP_NAME');
-            $attributes['seo_description'] = $attributes['name'] . ' | ' . env('APP_NAME');
-
-            $page = Page::updateOrCreate(
-                [
-                    'slug' => $attributes['slug']
-                ],
-                $attributes
-            );
-
-            foreach ($pageSchema['blocks'] as $item) {
-                $item['page_id'] = $page->id;
-                PageItem::updateOrCreate(
-                    [
-                        'page_id' => $item['page_id'],
-                        'name' => $item['name']
-                    ],
-                    $item
-                );
-            }
-        }
-    }
-
-
-    private function getSchema(): array
+    public function getSchema(): array
     {
         return [
             [

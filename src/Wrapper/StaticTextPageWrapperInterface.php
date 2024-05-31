@@ -4,7 +4,7 @@ namespace Plutuss\Wrapper;
 
 interface StaticTextPageWrapperInterface
 {
-
+ 
     /**
      * @param string $name
      * @param string $slug
