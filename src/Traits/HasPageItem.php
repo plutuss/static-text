@@ -29,9 +29,7 @@ trait HasPageItem
     public function show(string $name, mixed $default = ''): mixed
     {
 
-        $dataNameLocale = $name . '_' . app()->getLocale();
-
-        $data = $this->data->whereIn('key', [$name, $dataNameLocale])->first();
+        $data = $this->getItemFromLocale($name);
 
         if (!isset($data['value']) || empty($data)) {
             return $default;
@@ -42,6 +40,28 @@ trait HasPageItem
         }
 
         return $data['value'];
+    }
+
+    private function getItemFromLocale(string $name): mixed
+    {
+
+        $dataNameLocale = $name . '_' . app()->getLocale();
+
+        $item = $this->data->where('key', $dataNameLocale)->first();
+
+        if (!empty($item)) {
+            return $item;
+        }
+
+        $item = $this->data->where('key', $name)->first();
+
+        if (!empty($item)) {
+            return $item;
+        }
+
+        return $this->data->whereIn('key', [$name, $dataNameLocale])->first();
+
+
     }
 
     /**
